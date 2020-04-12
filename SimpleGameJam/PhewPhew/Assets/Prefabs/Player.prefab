@@ -352,7 +352,6 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  jumpsLeft: 1
 --- !u!70 &6455455441149865451
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
