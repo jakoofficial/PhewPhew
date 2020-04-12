@@ -9,11 +9,11 @@ public class PlayerMovement : MonoBehaviour
 
     private float hAxis;
     private bool isGrounded;
+    private bool isLeft = false;
 
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
-    public int jumpsLeft;
 
     private Rigidbody2D rb;
 
@@ -27,8 +27,18 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.velocity = Vector2.up * jumpForce;
-            jumpsLeft--;
         }
+        Vector3 newScale = transform.localScale;
+
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            newScale.x = -1;
+        }
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            newScale.x = 1;
+        }
+        transform.localScale = newScale;
     }
 
     void FixedUpdate()
@@ -38,5 +48,8 @@ public class PlayerMovement : MonoBehaviour
         float hAxis = Input.GetAxis("Horizontal");
 
         rb.velocity = new Vector2(hAxis * speed, rb.velocity.y);
+
+        
+
     }
 }
